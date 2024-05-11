@@ -14,3 +14,13 @@ html, body {
 .pi {
     color: gray
 }
+
+@media screen and (max-width: 667px) {
+    :root {
+        font-size: 8px;
+    }
+    img {
+        width: 150px;
+        height: 150px; 
+    }
+}
