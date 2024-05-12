@@ -1,34 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHeaders,
-} from '@angular/common/http';
+import { map, Observable } from 'rxjs';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  header = new HttpHeaders().set(
-    'Authorization',
-    ' Bearer  BQBKg4rzxaB37UzHmSvW4wHUP5WNqEWOKgLdOdvLwY7o2a-URGrplSRzbCfc7ZPwT3w62qiszDWxc9x6AbbsHz_PXLQSHFKdIcUcJDdI09HgSzeC4n4'
-  );
-  constructor(private http: HttpClient) {}
+  header!: HttpHeaders;
+  constructor(private http: HttpClient, private tokenSvc: TokenService) {}
 
-  getArtist(): Observable<any> {
-    return this.http.get(
-      'https://api.spotify.com/v1/artists/7rN3Agir6FaZNfhf5V7mfN',
-      { headers: this.header }
+  getArtist(): Observable<string> {
+    return this.http.get('https://api.spotify.com/v1/artists/7rN3Agir6FaZNfhf5V7mfN').pipe(
+      map((data: any): string => {
+        return data.images[0].url;
+      }),
     );
   }
 
   search(query: string): Observable<any> {
-    return this.http.get(
-      'https://api.spotify.com/v1/search?' + query + '&type=album,artist,track',
-      {
-        headers: this.header,
-      }
-    );
+    return this.http.get('https://api.spotify.com/v1/search?' + query + '&type=album,artist,track');
   }
 }

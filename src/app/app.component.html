@@ -53,6 +53,7 @@
         <div class="flex gap-3">
           <p-iconField iconPosition="left" class="flex-1">
             <p-inputIcon styleClass="pi pi-search" />
+            <p-inputIcon [styleClass]="isLoading ? 'pi pi-spinner pi-spin' : '' " />
             <input type="text" pInputText placeholder="Search" class="w-full spinning-border"
               formControlName="search" />
           </p-iconField>
@@ -64,7 +65,10 @@
   <div class="flex justify-content-center align-conter-center flex-1">
     <div class=" flex flex-column justify-content-center">
       <div class="justify-content-center flex">
-        <img [src]="image" alt="Album cover placeholder" width="300px" height="300px">
+        @if(artistImage$ | async; as image$)
+        {
+        <img [src]="image$" alt="Album cover placeholder" width="300px" height="300px">
+        }
       </div>
       <h2 class="flex justify-content-center text-2xl text-gray-800 font-semibold mb-2">{{song}}</h2>
       <p class=" flex justify-content-center align-items-center text-lg text-gray-700 mb-4">
