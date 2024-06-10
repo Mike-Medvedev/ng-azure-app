@@ -10,14 +10,34 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-color: #112233;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
 }
 
 .p-input-icon.pi.pi-spinner {
   left: 23rem;
 }
 
+span.p-icon-field.p-icon-field-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .pi {
   color: gray;
+}
+
+.p-button {
+  background: #13283c !important;
+}
+
+hr {
+  background-color: gray;
+  height: 1px;
+  border: 0;
 }
 
 @media screen and (max-width: 667px) {
