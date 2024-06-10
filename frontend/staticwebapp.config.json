@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "route": "/callback",
+      "statusCode": 200
+    },
+    {
+      "route": "/main",
+      "statusCode": 200
+    },
+    {
+      "route": "/*",
+      "statusCode": 200
+    }
+  ]
+}
