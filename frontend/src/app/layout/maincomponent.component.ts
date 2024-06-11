@@ -55,17 +55,23 @@ export class MainComponent implements OnInit {
     this.router.navigate([""]);
   }
 
+  // search() {
+  //   const q = `q=${this.searchForm.get("search")?.value}`;
+  //   this.searchResult$ = this.api.search(q).pipe(
+  //     map((r: any) => {
+  //       return r.tracks.items[0];
+  //     }),
+  //     catchError(err => {
+  //       console.error(err.message);
+  //       throw new Error(err);
+  //     }),
+  //   );
+  // }
+
   search() {
-    const q = `q=${this.searchForm.get("search")?.value}`;
-    this.searchResult$ = this.api.search(q).pipe(
-      map((r: any) => {
-        return r.tracks.items[0];
-      }),
-      catchError(err => {
-        console.error(err.message);
-        throw new Error(err);
-      }),
-    );
+    const input = this.searchForm.get("search")?.value;
+    if (typeof input === "string") this.api.rec(input).subscribe();
+    else console.error("input is not a string or invalid");
   }
 
   rec() {

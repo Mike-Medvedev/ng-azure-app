@@ -24,6 +24,10 @@ export class ApiService {
     return this.http.post(`${environment.api_url}/search`, q);
   }
 
+  test() {
+    return this.http.get(environment.api_url);
+  }
+
   rec(query: string): Observable<{}> {
     console.log("making request", query);
     return this.http.post(`${environment.api_url}/rec`, { prompt: query });
